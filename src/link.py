@@ -1,7 +1,6 @@
-from src.node import Node
 
 class Link:
-    def __init__(self, from_node:Node, etiquette:str, to_node:Node):
+    def __init__(self, from_node:'Node', etiquette:str, to_node:'Node'):
         self.from_node = from_node
         self.etiquette = etiquette
         self.to_node = to_node
@@ -11,6 +10,7 @@ class Link:
         return str(self) + other
     def __radd__(self, other):
         return other + str(self)
-    def equals(self, link):
+    def equals(self, link:'Link'):
         return (self.from_node == link.from_node) and (self.etiquette == link.etiquette) and (self.to_node == link.to_node)
 
+from .node import Node

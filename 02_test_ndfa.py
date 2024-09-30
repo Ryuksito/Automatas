@@ -29,5 +29,5 @@ ndfa = NDFA(q0, [q0, q1, q2], [q2])
 # Imprimir el autómata
 print(ndfa)
 ndfa.graph()
-print(ndfa.accepts('00100'))
+print(ndfa.accepts('00100\0\0'))
 

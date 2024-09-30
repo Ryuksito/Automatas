@@ -1,9 +1,10 @@
+from typing import List
 
 class Node:
-    def __init__(self, val):
-        self.val = val
-        self.links = []
-    def add_link(self, link):
+    def __init__(self, val:str):
+        self.val:str = val
+        self.links:List['Link'] = []
+    def add_link(self, link:'Link'):
         self.links.append(link)
     def __str__(self):
         node = "(%s):\n" % self.val
@@ -14,7 +15,7 @@ class Node:
         return str(self) + other
     def __radd__(self, other):
         return other + str(self)
-    def equals(self, node):
+    def equals(self, node:'Node'):
         ok = (self.val == node.val)
         if len(self.links) == len(node.links):
             for i in range(len(self.links)):
@@ -22,3 +23,5 @@ class Node:
             return ok
         else:
             return False
+        
+from .link import Link

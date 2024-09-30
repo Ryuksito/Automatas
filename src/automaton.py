@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+from typing import List
+
 
 class Automaton:
-    def __init__(self, initial_node, nodes, terminal_nodes):
+    def __init__(self, initial_node:'Node', nodes:List['Node'], terminal_nodes:List['Node']):
         self.initial_node = initial_node
         self.nodes = nodes
         self.terminal_nodes = terminal_nodes
@@ -12,6 +14,8 @@ class Automaton:
         self.automaton = dict()
         for node in self.nodes:
             conecctions = dict()
+
+            link: Link
             for link in node.links:
                 conecctions[link.to_node.val] = []
             for link in node.links:
@@ -19,7 +23,7 @@ class Automaton:
             
             self.automaton[node.val] = conecctions
 
-    def graph(self, save:bool=False, filename="automaton.png"):
+    def graph(self, save:bool=False, filename:str="automaton.png"):
         G = nx.DiGraph()
 
         for node in self.automaton.keys():
@@ -35,3 +39,7 @@ class Automaton:
 
         if save: plt.savefig(filename)
         plt.show()
+
+
+from .link import Link
+from .node import Node
